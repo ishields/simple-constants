@@ -3,11 +3,27 @@ require 'simple_constants/base_constant_methods'
 require 'simple_constants/base_constants'
 
 module SimpleConstants
+  def self.yml_path=(value)
+    @yml_path = value
+  end
+
+  def self.yml_path
+    @yml_path || 'lib/simple_constants/yml/'
+  end
+
+  def self.model_path=(value)
+    @model_path = value
+  end
+
+  def self.model_path
+    @model_path || 'lib/simple_constants/model'
+  end
+
   def self.root
-    File.expand_path('../..',__FILE__)
+    Dir.pwd
   end
 end
 
-Dir["#{SimpleConstants.root}/lib/**/*.rb"].each do |f|
+Dir["#{SimpleConstants.root}/#{SimpleConstants.model_path}/**/*.rb"].each do |f|
   require f
 end

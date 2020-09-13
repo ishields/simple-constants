@@ -13,11 +13,11 @@ module SimpleConstants
     private
 
     def root_yml_dir
-      File.join(Rails.root, 'lib/constants')
+      File.join(SimpleConstants.root, SimpleConstants.yml_path)
     end
 
     def load_merged_ymls
-      yml_file = File.join(root_yml_dir, "#{self.name.underscore}.en.yml")
+      yml_file = File.join(root_yml_dir, "#{self.name.underscore.gsub('simple_constants', '')}.en.yml")
       YAML.load_file(yml_file)
     end
   end

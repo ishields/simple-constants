@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple-constants (0.1.07)
+    simple-constants (0.1.10)
 
 GEM
   remote: https://rubygems.org/
