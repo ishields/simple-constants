@@ -49,15 +49,11 @@ module SimpleConstants
       @data.clone
     end
 
-    def display_name(options = {})
-      t(:display_name, options)
-    end
-
     # Looks up translation based on class name and code_str
-    def t(field, options = {})
-      options ||= {}
-      scope = self.class.to_s.split('::')[1..-1].map(&:underscore) + [code_str]
-      I18n.t(field, options.merge(scope: scope, default: nil))
-    end
+    # def t(field, options = {})
+    #   options ||= {}
+    #   scope = self.class.to_s.split('::')[1..-1].map(&:underscore) + [code_str]
+    #   I18n.t(field, options.merge(scope: scope, default: nil))
+    # end
   end
 end
