@@ -18,7 +18,11 @@ module SimpleConstants
 
     def load_merged_ymls
       yml_file = File.join(root_yml_dir, "#{self.name.underscore.gsub('simple_constants', '')}.en.yml")
-      YAML.load_file(yml_file)
+      begin
+        YAML.load_file(yml_file)
+      rescue
+        raise StandardError.new("Failed to Load constants yml file at #{yml_file}")
+      end
     end
   end
 end
