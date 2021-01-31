@@ -17,11 +17,17 @@ module SimpleConstants
     end
 
     def load_merged_ymls
-      yml_file = File.join(root_yml_dir, "#{self.name.underscore.gsub('simple_constants', '')}.en.yml")
-      begin
-        YAML.load_file(yml_file)
-      rescue
-        raise StandardError.new("Failed to Load constants yml file at #{yml_file}")
+      base_path = File.join(root_yml_dir, "#{self.name.underscore.gsub('simple_constants', '')}")
+      single_yml_file = "#{base_path}.en.yml"
+      file_paths = Dir["#{base_path}/*.en.yml"]
+      file_paths << single_yml_file if File.exist?(single_yml_file)
+
+      file_paths.each_with_object({}) do |file_path, hash|
+        begin
+          hash.deep_merge! YAML.load_file(file_path)
+        rescue
+          raise StandardError.new("Failed to Load constants yml file at #{yml_file}")
+        end
       end
     end
   end
