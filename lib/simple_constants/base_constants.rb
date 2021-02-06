@@ -37,6 +37,10 @@ module SimpleConstants
       self.const_get(:ALL).find { |type| k.to_s == type[:code].to_s }
     end
 
+    def self.find_by_code_str(k)
+      self.const_get(:ALL).find { |type| k.to_s == type[:code_str] }
+    end
+
     def self.find_by(find_by_hash)
       self.const_get(:ALL).find do |type|
         find_by_hash.all? do | key, value |
